@@ -10,9 +10,9 @@ var io = require('socket.io')(3030);
 
 var socket = false;
 
-io.on("connection", function(s){
+io.on("connection", function(newSocket){
    
-    socket = s;
+    socket = newSocket;
     
 });
 
@@ -26,18 +26,6 @@ serialPort.on("open", function () {
             socket && socket.emit("move", data);
         
         lastMessage = data;
+        
     });
 });
-
-/*
-io.on('connection', function (socket) {
-  io.emit('this', { will: 'be received by everyone'});
-
-  socket.on('private message', function (from, msg) {
-    console.log('I received a private message by ', from, ' saying ', msg);
-  });
-
-  socket.on('disconnect', function () {
-    io.sockets.emit('user disconnected');
-  });
-});*/
